@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
-#include "appointment.h"
+#include "../include/appointment.h"
+#include "../include/file_manager.h"
 
 Appointment appointments[MAX_APPOINTMENTS];
 int appointmentCount = 0;
@@ -38,6 +39,7 @@ void bookAppointment() {
     }
 
     appointments[appointmentCount++] = a;
+    saveData(); // Save automatically after booking
     printf("Appointment booked successfully.\n");
 }
 
@@ -53,6 +55,7 @@ void cancelAppointment() {
                 appointments[j] = appointments[j + 1];
             }
             appointmentCount--;
+            saveData(); // Save automatically after canceling
             printf("Appointment cancelled.\n");
             return;
         }

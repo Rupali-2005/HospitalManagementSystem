@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
-#include "records.h"
+#include "../include/records.h"
+#include "../include/file_manager.h"
 
 Patient patients[MAX_PATIENTS];
 Doctor doctors[MAX_DOCTORS];
@@ -11,13 +12,13 @@ void manageRecords() {
     printf("1. Add Patient\n2. Add Doctor\n3. View Patients\n4. View Doctors\nEnter your choice: ");
     if (scanf("%d", &choice) != 1) {
         printf("Invalid input!\n");
-        while (getchar() != '\n');
+        while (getchar() != '\n'); // clear buffer
         return;
     }
-    getchar(); // clear newline
+    getchar(); // clear newline from buffer
 
     switch (choice) {
-        case 1:
+        case 1: // Add Patient
             if (patientCount >= MAX_PATIENTS) {
                 printf("Cannot add more patients. Max limit reached.\n");
                 break;
@@ -37,10 +38,11 @@ void manageRecords() {
                 getchar(); // clear newline
                 patients[patientCount++] = p;
                 printf("Patient added.\n");
+                saveData(); // Save after adding
             }
             break;
 
-        case 2:
+        case 2: // Add Doctor
             if (doctorCount >= MAX_DOCTORS) {
                 printf("Cannot add more doctors. Max limit reached.\n");
                 break;
@@ -57,10 +59,11 @@ void manageRecords() {
 
                 doctors[doctorCount++] = d;
                 printf("Doctor added.\n");
+                saveData(); // Save after adding
             }
             break;
 
-        case 3:
+        case 3: // View Patients
             if (patientCount == 0) {
                 printf("No patients found.\n");
             } else {
@@ -70,7 +73,7 @@ void manageRecords() {
             }
             break;
 
-        case 4:
+        case 4: // View Doctors
             if (doctorCount == 0) {
                 printf("No doctors found.\n");
             } else {
