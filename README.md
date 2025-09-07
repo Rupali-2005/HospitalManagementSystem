@@ -12,50 +12,52 @@ A simple **C-based console application** that manages a hospital's patients, doc
 - **Safe Input Handling**: Prevents buffer overflow using fixed-length input and proper parsing.
 
 ## File Structure
-├── main.c
-├── login.c / login.h
-├── appointment.c / appointment.h
-├── records.c / records.h
-├── file_manager.c / file_manager.h
-├── patients.txt # Generated automatically
-├── doctors.txt # Generated automatically
-├── appointments.txt # Generated automatically
+```text
+├── Program/
+│ ├── include/
+│ │ ├── appointment.h
+│ │ ├── file_manager.h
+│ │ ├── login.h
+│ │ └── records.h
+│ └── src/
+│ ├── appointment.c
+│ ├── file_manager.c
+│ ├── login.c
+│ ├── main.c
+│ └── records.c
+├── Document/
+│ ├── patients.txt # Generated automatically
+│ ├── doctors.txt # Generated automatically
+│ └── appointments.txt # Generated automatically
 └── README.md
-
+```
 
 ## How to Compile and Run
 
 1. **Compile the project** using GCC:
 
 ```bash
-gcc main.c login.c appointment.c records.c file_manager.c -o hospital
+gcc Program/src/*.c -IProgram/include -o hospita
 ./hospital      # Linux/macOS
 hospital.exe    # Windows
-Usage Notes
+```
+## Usage Notes
 
-Login Credentials:
+## Login Credentials:
+- **Username:** admin
+- **Password:** admin
 
-Username: admin
+## Data Persistence:
+- All patients, doctors, and appointments are saved automatically when you choose Save & Exit.
+- Files are human-readable (.txt) and located in the project directory.
 
-Password: admin
+## Future Improvements
+- Implement role-based access (admin, doctor, receptionist).
+- Add search functionality for patients/doctors/appointments.
+- Integrate a GUI or web interface.
+- Encrypt sensitive data like passwords.
 
-Data Persistence:
-
-All patients, doctors, and appointments are saved automatically when you choose Save & Exit.
-
-Files are human-readable (.txt) and located in the project directory.
-
-Future Improvements
-
-Implement role-based access (admin, doctor, receptionist).
-
-Add search functionality for patients/doctors/appointments.
-
-Integrate a GUI or web interface.
-
-Encrypt sensitive data like passwords.
-
-Author: Rupali Rana
+**Author: Rupali Rana**
 https://github.com/Rupali-2005/HospitalManagementSystem
 
 
